@@ -108,7 +108,9 @@ public class SlenderManAI : MonoBehaviour
             randomPosition = player.position + Random.onUnitSphere * teleportDistance;
         }
         while (GetComponent<TargetVisible>().IsVisible(randomPosition) && --maxAttempts > 0);
-        randomPosition.y = transform.position.y; // Keep the same Y position
+
+        
+        randomPosition = GetTerrainPos(randomPosition.x, randomPosition.y); // 
         transform.position = randomPosition;
     }
 
@@ -131,5 +133,20 @@ public class SlenderManAI : MonoBehaviour
 
     public void SetIsVisible(bool IsVisible) {
         isVisible = IsVisible;
+    }
+
+    static Vector3 GetTerrainPos(float x, float y)
+    {
+        //Create object to store raycast data
+        RaycastHit hit;
+
+        //Create origin for raycast that is above the terrain. I chose 100.
+        Vector3 origin = new Vector3(x, 100, y);
+
+        //Send the raycast.
+        Physics.Raycast(origin, Vector3.down, out hit, Mathf.Infinity);
+
+        Debug.Log("Terrain location found at " + hit.point);
+        return hit.point;
     }
 }

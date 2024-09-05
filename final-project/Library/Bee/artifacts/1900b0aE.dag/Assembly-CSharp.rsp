@@ -356,6 +356,7 @@
 "Assets/SC_FPSController.cs"
 "Assets/SlenderManAI.cs"
 "Assets/TargetVisible.cs"
+"Assets/TerrainHeight.cs"
 -langversion:9.0
 /deterministic
 /optimize+
