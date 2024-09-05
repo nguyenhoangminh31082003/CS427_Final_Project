@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638610927301770717
-    m_Hash: 430499563
+      ticks: 638611350347988167
+    m_Hash: 84251036
   m_LockFileStatus:
     m_FilePath: C:/MSI_090822/Minh/CS427_Final_Project/final-project/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638610927845975566
-    m_Hash: 1532822968
+      ticks: 638611350347998094
+    m_Hash: 1325207261
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -4240,13 +4240,28 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: General search window for use in the Editor. First target use is for
     GraphView node search.
   status: 0
   errors: []
   versions:
     all:
+    - 4.0.0-preview
+    - 4.0.0
+    - 4.0.7-preview
+    - 4.0.7
+    - 4.0.8-preview
+    - 4.0.9
+    - 4.1.0-preview
+    - 4.1.0
+    - 4.2.0
+    - 4.3.0
+    - 4.3.1
+    - 4.3.2
+    - 4.6.0-preview
+    - 4.7.0-preview
+    - 4.9.1
     - 4.9.2
     compatible:
     - 4.9.2
@@ -4267,7 +4282,7 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 0
+  datePublishedTicks: 637831252240000000
   documentationUrl: 
   hasRepository: 1
   repository:
