@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/TheFirstMap.unity
+- path: Assets/Scenes/slender.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
