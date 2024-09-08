@@ -13,11 +13,12 @@ public class Computer : MonoBehaviour
     private GameObject screenOn;
     [SerializeField]
     private GameObject shards;
-    private bool broken;
+    private bool broken, breakable;
 
     private void Awake()
     {
         this.broken = false;
+        this.breakable = false;
     }
 
     void Start()
@@ -27,7 +28,11 @@ public class Computer : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (this.breakable)
+                this.Explode();
+        }
     }
 
     private bool Explode()
@@ -36,6 +41,7 @@ public class Computer : MonoBehaviour
             return false;
 
         this.broken = true;
+        this.breakable = false;
         this.screenOff.SetActive(false);
         this.screenOn.SetActive(false);
         this.shards.SetActive(true);
@@ -58,7 +64,13 @@ public class Computer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("GameObject Player has entered the sphere collider of GameObject Computer.");
+            if (!this.broken)
+            {
+                this.breakable = true;
+                this.screenOff.SetActive(false);
+                this.screenOn.SetActive(true);
+                this.shards.SetActive(false);
+            }
         }
     }
 
@@ -66,7 +78,13 @@ public class Computer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("GameObject Player has exited the sphere collider of GameObject Computer.");
+            if (!this.broken)
+            {
+                this.breakable = false;
+                this.screenOff.SetActive(true);
+                this.screenOn.SetActive(false);
+                this.shards.SetActive(false);
+            }
         }
     }
 }
