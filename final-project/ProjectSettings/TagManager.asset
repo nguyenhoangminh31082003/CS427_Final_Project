@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TheCameraOfPlayer
+  - Computer
+  - TheCollectionOfComputers
   layers:
   - Default
   - TransparentFX
