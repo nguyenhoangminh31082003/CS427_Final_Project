@@ -33,6 +33,7 @@ public class Computer : MonoBehaviour
             if (this.breakable)
             {
                 MachineTextScript.UpdateMachine(1);
+                TimerScript.TimerReset();
                 this.Explode();
             }
         }
