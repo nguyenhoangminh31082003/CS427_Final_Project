@@ -50,9 +50,9 @@ public class Computer : MonoBehaviour
         foreach (Rigidbody shardRB in shardRBs)
         {
             float randomForce = Random.Range(1, 5);
-            float randomRotationX = Random.Range(-20, 20);
+            float randomRotationX = 0;
             float randomRotationY = Random.Range(-20, 20);
-            float randomRotationZ = Random.Range(-20, 20);
+            float randomRotationZ = 0;
             shardRB.transform.Rotate(randomRotationX, randomRotationY, randomRotationZ);
             shardRB.AddRelativeForce(Vector3.forward * randomForce, ForceMode.Impulse);
         }
