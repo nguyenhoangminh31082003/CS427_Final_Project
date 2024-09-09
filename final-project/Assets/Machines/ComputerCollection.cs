@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class ComputerCollection : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    private GameObject[] computers;
+
     void Start()
     {
-        
+        if (this.computers == null)
+            this.computers = GameObject.FindGameObjectsWithTag("Computer");
+
+        foreach (GameObject computer in this.computers)
+            Debug.Log(computer.name);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
