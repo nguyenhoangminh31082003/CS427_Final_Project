@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Computer : MonoBehaviour
 {
-
+    [SerializeField]
+    private GameObject canvas;
     [SerializeField]
     private GameObject screenExplosionParticleSystem;
     [SerializeField]
@@ -42,9 +43,11 @@ public class Computer : MonoBehaviour
 
         this.broken = true;
         this.breakable = false;
+        this.canvas.SetActive(false);
         this.screenOff.SetActive(false);
         this.screenOn.SetActive(false);
         this.shards.SetActive(true);
+
         Rigidbody[] shardRBs = this.GetComponentsInChildren<Rigidbody>();
         this.screenExplosionParticleSystem.SetActive(true);
         foreach (Rigidbody shardRB in shardRBs)
@@ -70,6 +73,7 @@ public class Computer : MonoBehaviour
                 this.screenOff.SetActive(false);
                 this.screenOn.SetActive(true);
                 this.shards.SetActive(false);
+                this.canvas.SetActive(true);
             }
         }
     }
@@ -84,6 +88,7 @@ public class Computer : MonoBehaviour
                 this.screenOff.SetActive(true);
                 this.screenOn.SetActive(false);
                 this.shards.SetActive(false);
+                this.canvas.SetActive(false);
             }
         }
     }
