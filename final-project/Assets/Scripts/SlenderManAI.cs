@@ -64,21 +64,21 @@ public class SlenderManAI : MonoBehaviour
         RotateTowardsPlayer();
         
         // Check player distance and toggle the "static" object accordingly
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer <= staticActivationRange)
-        {
-            if (staticObject != null && !staticObject.activeSelf)
-            {
-                staticObject.SetActive(true);
-            }
-        }
-        else
-        {
-            if (staticObject != null && staticObject.activeSelf)
-            {
-                staticObject.SetActive(false);
-            }
-        }
+        //float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        //if (distanceToPlayer <= staticActivationRange)
+        //{
+        //    if (staticObject != null && !staticObject.activeSelf)
+        //    {
+        //        staticObject.SetActive(true);
+        //    }
+        //}
+        //else
+        //{
+        //    if (staticObject != null && staticObject.activeSelf)
+        //    {
+        //        staticObject.SetActive(false);
+        //    }
+        //}
     }
 
     private void DecideTeleportAction()

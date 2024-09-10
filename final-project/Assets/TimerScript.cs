@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,6 +8,7 @@ using UnityEngine;
 public class TimerScript : MonoBehaviour
 {
     static TimerScript TimerScriptInstance;
+    [SerializeField] GameObject staticEffect;
     // Start is called before the first frame update
     static float multi = 5.0f;
     static float targetTime = 60.0f;
@@ -34,9 +36,24 @@ public class TimerScript : MonoBehaviour
     {
         targetTime = multi * 60.0f;
         uGUI = GetComponent<TextMeshProUGUI>();
+        staticEffect.SetActive(false);
     }
 
     // Update is called once per frame
+
+    private void FixedUpdate()
+    {
+        if (targetTime < (0.9f * multi * 60.0f))
+        {
+            staticEffect.SetActive(true);
+            Debug.Log("Effect On");
+        }
+        else
+        {
+            staticEffect.SetActive(false);
+        }
+    }
+
     void Update()
     {
         targetTime -= Time.deltaTime;

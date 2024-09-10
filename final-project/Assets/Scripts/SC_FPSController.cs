@@ -13,10 +13,12 @@ public class SC_FPSController : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+    public float crouchingHeight = 0.5f;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
+    Vector3 cameraPosition;
 
     [HideInInspector]
     public bool canMove = true;
@@ -28,6 +30,7 @@ public class SC_FPSController : MonoBehaviour
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        cameraPosition = playerCamera.transform.localPosition;
     }
 
     void Update()
@@ -49,6 +52,18 @@ public class SC_FPSController : MonoBehaviour
         else
         {
             moveDirection.y = movementDirectionY;
+        }
+
+        //If player is crouching
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            //Make the camera go down
+            playerCamera.transform.localPosition = new Vector3(cameraPosition.x, cameraPosition.y - crouchingHeight, cameraPosition.z);
+        }
+        else
+        {
+            //Make the camera go up
+            playerCamera.transform.localPosition = cameraPosition;
         }
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
