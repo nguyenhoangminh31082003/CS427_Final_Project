@@ -15,6 +15,8 @@ public class ComputerCollection : MonoBehaviour
         if (this.computers == null)
             this.computers = GameObject.FindGameObjectsWithTag("Computer");
 
+        Debug.Log(this.computers.Length + " Computers!!!");
+
         this.numberOfChosenComputers = Math.Min(Math.Max(0, numberOfChosenComputers), this.computers.Length);
     
         this.recommendedDistance = Math.Abs(this.recommendedDistance);
@@ -106,8 +108,6 @@ public class ComputerCollection : MonoBehaviour
                 for (int i = 0; i < computerCount; ++i)
                 {
                     this.computers[i].SetActive(selected[i]);
-                    if (selected[i])
-                        Debug.Log(i + " is chosen!!! (" + this.computers[i].name + ")");
                 }
             }
         }
@@ -126,6 +126,23 @@ public class ComputerCollection : MonoBehaviour
     public int GetNumberOfChosenComputers()
     {
         return this.numberOfChosenComputers;
+    }
+
+    public int CountUnbrokenComputers()
+    {
+        int result = 0;
+
+        foreach (GameObject gameObject in this.chosenComputers)
+        {
+            Computer computer = gameObject.GetComponent<Computer>();
+            if (computer != null)
+            {
+                if (!computer.IsBroken())
+                    ++result;
+            }
+        }
+
+        return result;
     }
 
     void Update()
