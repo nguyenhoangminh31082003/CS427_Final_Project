@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SlenderManAI : MonoBehaviour
@@ -19,6 +20,8 @@ public class SlenderManAI : MonoBehaviour
 
     [SerializeField] private bool isVisible = false;
 
+    [SerializeField] private LayerMask terrainLayerMask;
+
     private void Start()
     {
         baseTeleportSpot = transform.position;
@@ -38,6 +41,16 @@ public class SlenderManAI : MonoBehaviour
         if (staticObject != null)
         {
             staticObject.SetActive(false);
+        }
+
+         GameObject terrainWrapper = GameObject.FindGameObjectWithTag("Terrain");
+        if (terrainWrapper != null)
+        {
+            terrainLayerMask = 1 << terrainWrapper.layer;
+        }
+        else
+        {
+            Debug.LogError("Terrain wrapper object not found!");
         }
     }
 
@@ -83,11 +96,12 @@ public class SlenderManAI : MonoBehaviour
 
     private void DecideTeleportAction()
     {
-        float randomValue = Random.value;
-
+        float randomValue = UnityEngine.Random.value;
+        Console.WriteLine("Decide to teleport");
         if (randomValue <= chaseProbability)
         {
             TeleportNearPlayer();
+            Console.WriteLine("Decide to teleport near player");
         }
         else
         {
@@ -100,18 +114,25 @@ public class SlenderManAI : MonoBehaviour
     private void TeleportNearPlayer()
     {
         Vector3 randomPosition;
-        
+        int maxAttempts = 100;
 
-        int maxAttempts = 20; // Limit the number of attempts to avoid infinite loops
         do
         {
-            randomPosition = player.position + Random.onUnitSphere * teleportDistance;
+            Vector2 randomCircle = UnityEngine.Random.insideUnitCircle * teleportDistance;
+            randomPosition = player.position + new Vector3(randomCircle.x, 0, randomCircle.y);
+            randomPosition = GetTerrainPos(randomPosition.x, randomPosition.z);
         }
         while (GetComponent<TargetVisible>().IsVisible(randomPosition) && --maxAttempts > 0);
 
-        
-        randomPosition = GetTerrainPos(randomPosition.x, randomPosition.y); // 
-        transform.position = randomPosition;
+        if (maxAttempts > 0)
+        {
+            transform.position = randomPosition;
+        }
+        else
+        {
+            Debug.LogWarning("Failed to find a valid teleport position.");
+            // Implement fallback behavior here
+        }
     }
 
     private void TeleportToBaseSpot()
@@ -135,18 +156,19 @@ public class SlenderManAI : MonoBehaviour
         isVisible = IsVisible;
     }
 
-    static Vector3 GetTerrainPos(float x, float y)
+     private Vector3 GetTerrainPos(float x, float z)
     {
-        //Create object to store raycast data
+        Vector3 origin = new Vector3(x, 1000, z);
         RaycastHit hit;
 
-        //Create origin for raycast that is above the terrain. I chose 100.
-        Vector3 origin = new Vector3(x, 100, y);
-
-        //Send the raycast.
-        Physics.Raycast(origin, Vector3.down, out hit, Mathf.Infinity);
-
-        Debug.Log("Terrain location found at " + hit.point);
-        return hit.point;
+        if (Physics.Raycast(origin, Vector3.down, out hit, Mathf.Infinity, terrainLayerMask))
+        {
+            return hit.point;
+        }
+        else
+        {
+            Debug.LogWarning($"Raycast failed to hit terrain at ({x}, {z}). Using fallback height.");
+            return new Vector3(x, 0, z);
+        }
     }
 }
