@@ -95,4 +95,14 @@ public class Computer : MonoBehaviour
             }
         }
     }
+
+    public bool IsBroken()
+    {
+        return this.broken;
+    }
+
+    public bool IsBreakable()
+    {
+        return this.breakable; 
+    }
 }
