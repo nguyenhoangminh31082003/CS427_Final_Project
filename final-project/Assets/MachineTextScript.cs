@@ -9,6 +9,7 @@ public class MachineTextScript : MonoBehaviour
     static MachineTextScript MachineTextInstance;
     static public int total = 0;
     static TextMeshProUGUI textMesh = null;
+    [SerializeField] GameObject gameWinningText;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -40,6 +41,10 @@ public class MachineTextScript : MonoBehaviour
 
     void Update()
     {
-        
+        if (total == 8)
+        {
+            gameWinningText.SetActive(true);
+            GameState.SetGameOver();
+        }
     }
 }

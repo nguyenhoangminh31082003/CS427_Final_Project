@@ -9,6 +9,7 @@ public class TimerScript : MonoBehaviour
 {
     static TimerScript TimerScriptInstance;
     [SerializeField] GameObject staticEffect;
+    [SerializeField] GameObject gameOverText;
     // Start is called before the first frame update
     static float multi = 5.0f;
     static float targetTime = 60.0f;
@@ -43,10 +44,14 @@ public class TimerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (targetTime < (0.9f * multi * 60.0f))
+        if (GameState.gameOver)
+        {
+            return;
+        }
+        if (targetTime < (0.3f * multi * 60.0f))
         {
             staticEffect.SetActive(true);
-            Debug.Log("Effect On");
+            //Debug.Log("Effect On");
         }
         else
         {
@@ -56,7 +61,17 @@ public class TimerScript : MonoBehaviour
 
     void Update()
     {
+        if (GameState.gameOver == true)
+        {
+            return;
+        }
         targetTime -= Time.deltaTime;
+        if (targetTime <= 0)
+        {
+            targetTime = 0;
+            GameState.SetGameOver();
+            gameOverText.SetActive(true);
+        }
         uGUI.text = "Time: " + targetTime.ToString("F2");
     }
 }
