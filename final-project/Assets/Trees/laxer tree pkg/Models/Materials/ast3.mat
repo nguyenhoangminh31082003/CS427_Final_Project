@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ast3
-  m_Shader: {fileID: 10511, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 6d74b6647c6a8244793871f05140fe32, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -46,7 +46,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AO: 0.37
-    - _BaseLight: 0.643
+    - _BaseLight: 0
     - _Cutoff: 0.3428571
     - _Occlusion: 0.2
     - _ShadowStrength: 1
