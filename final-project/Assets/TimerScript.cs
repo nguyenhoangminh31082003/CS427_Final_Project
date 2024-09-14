@@ -11,7 +11,7 @@ public class TimerScript : MonoBehaviour
     [SerializeField] GameObject staticEffect;
     [SerializeField] GameObject gameOverText;
     // Start is called before the first frame update
-    static float multi = 5.0f;
+    static float multi = 10.0f;
     static float targetTime = 60.0f;
     TextMeshProUGUI uGUI = null;
 
