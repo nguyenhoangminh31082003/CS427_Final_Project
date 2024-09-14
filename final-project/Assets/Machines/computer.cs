@@ -14,6 +14,7 @@ public class Computer : MonoBehaviour
     [SerializeField]
     private GameObject shards;
     private bool broken, breakable;
+    public AudioClip breakSound;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class Computer : MonoBehaviour
                 MachineTextScript.UpdateMachine(1);
                 TimerScript.TimerReset();
                 this.Explode();
+                AudioSource.PlayClipAtPoint(this.breakSound, this.transform.position);  
             }
         }
     }
