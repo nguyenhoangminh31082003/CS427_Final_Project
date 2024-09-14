@@ -14,6 +14,7 @@ public class SC_FPSController : MonoBehaviour
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
     public float crouchingHeight = 0.5f;
+    public AudioClip walkingSound;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
@@ -80,6 +81,23 @@ public class SC_FPSController : MonoBehaviour
         }
 
         // Move the controller
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        {
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.clip = walkingSound;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+
+        }
+        else
+        {
+            if (GetComponent<AudioSource>().isPlaying)
+            {
+                GetComponent<AudioSource>().Stop();
+            }
+        }
         characterController.Move(moveDirection * Time.deltaTime);
 
         // Player and Camera rotation
