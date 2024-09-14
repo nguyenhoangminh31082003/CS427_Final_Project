@@ -1,4 +1,4 @@
-# Eight Computers
+# Nosferatu and Eight Computers
 
 ## The student codes and full names
 
