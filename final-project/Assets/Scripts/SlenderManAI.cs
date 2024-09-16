@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class SlenderManAI : MonoBehaviour
 {
@@ -56,10 +57,19 @@ public class SlenderManAI : MonoBehaviour
 
     private void Update()
     {
-
+        if (GameState.gameOver)
+        {
+           if (teleportCooldown != 100)
+           {
+               teleportCooldown = 100;
+               teleportDistance = 5;
+               TeleportInFrontOfPlayer();
+           }
+           RotateTowardsPlayer();
+           return; 
+        }
         if (player == null)
         {
-           
             return;
         }
 
@@ -109,6 +119,14 @@ public class SlenderManAI : MonoBehaviour
         }
         // Play the teleport sound
         audioSource.Play();
+    }
+
+    private void TeleportInFrontOfPlayer() {
+        Vector3 directionToPlayer = player.position - transform.position;
+        directionToPlayer.y = 0f; // Ignore the vertical component
+        Vector3 randomPosition = player.position + directionToPlayer.normalized * teleportDistance;
+        randomPosition = GetTerrainPos(randomPosition.x, randomPosition.z);
+        transform.position = randomPosition;
     }
 
     private void TeleportNearPlayer()
