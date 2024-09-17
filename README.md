@@ -1,4 +1,4 @@
-# Nosferatu and Eight Computers
+# The Harkonnen and Eight Computers
 
 ## The Student Codes and Full Names
 
@@ -8,6 +8,8 @@
 - 21125055 - Huỳnh Hữu Phúc
 
 ## The Brief Introduction of The Game
+
+John wakes up and realises that he is in a completely dark forest. Behind the trees, he feels that he is being watched by someone. Suddenly he remembers a tale that the villagers often tell, a tale about a cursed count named Harkonnen and his cursed computers.  Any people targeted by him will face death. However, the villagers also say that once all eight cursed computers are destroyed, the count will no longer be cursed and his hunt will stop forever. Knowing that he is being targeted and there is only one way to survive, he quickly tries to find these cursed computers with the aim to destroy them before his death sentence comes. 
 
 ## Unity Version
 

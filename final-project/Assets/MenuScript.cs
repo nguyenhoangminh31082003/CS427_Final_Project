@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private GameObject PlayButton;
     [SerializeField] private GameObject QuitButton;
     public void StartGame()
@@ -20,9 +19,8 @@ public class MenuScript : MonoBehaviour
 
     public void SetPlayButtonBold()
     {
-        PlayButton.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Bold;
-        //Set color to red with alpha 0.8
-        PlayButton.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 0, 0, 0.8f);
+        PlayButton.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Bold | TMPro.FontStyles.Underline;
+        PlayButton.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
     }
 
     public void SetPlayButtonNormal()
@@ -33,9 +31,8 @@ public class MenuScript : MonoBehaviour
 
     public void SetQuitButtonBold()
     {
-        QuitButton.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Bold;
-        //Set color to red with alpha 0.8
-        QuitButton.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 0, 0, 0.8f);
+        QuitButton.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Bold | TMPro.FontStyles.Underline;
+        QuitButton.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
     }
 
     public void SetQuitButtonNormal()
@@ -49,7 +46,6 @@ public class MenuScript : MonoBehaviour
         Application.Quit();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
