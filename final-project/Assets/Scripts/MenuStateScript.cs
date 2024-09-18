@@ -4,68 +4,87 @@ using UnityEngine;
 
 public class MenuStateScript : MonoBehaviour
 {
-    [SerializeField] private GameObject playerAtMainMenu;   // Reference to Player's transform at the Main Menu
-    [SerializeField] private GameObject playerAtOptionMenu; // Reference to Player's transform at the Option Menu
-    [SerializeField] private GameObject mainMenuCanvas;     // Reference to the Main Menu Canvas
-    [SerializeField] private GameObject optionMenuCanvas;   // Reference to the Option Menu Canvas
-    [SerializeField] private double numberOfMillisecondsForTransition = 1000; // Time duration for the transition in milliseconds
+    [SerializeField] private GameObject playerAtMainMenu;
+    [SerializeField] private GameObject playerAtOptionMenu;
+    [SerializeField] private GameObject mainMenuCanvas;
+    [SerializeField] private GameObject optionMenuCanvas;
+    [SerializeField] private double numberOfMillisecondsForTransition = 1000;
 
     private bool isTransitioning = false;
-    private float transitionProgress = 0f; // Tracks progress of the transition
-    private float transitionDuration;      // Duration in seconds (converted from milliseconds)
-    
-    private Vector3 startPosition;         // Start position (Main Menu)
-    private Quaternion startRotation;      // Start rotation (Main Menu)
-    private Vector3 endPosition;           // End position (Option Menu)
-    private Quaternion endRotation;        // End rotation (Option Menu)
-
-    void Start()
-    {
-        transitionDuration = (float)numberOfMillisecondsForTransition / 1000f; // Convert milliseconds to seconds
-    }
+    private bool isReverselyTransitioning = false;
+    private float transitionProgress = 0f;
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+    private Vector3 endPosition;
+    private Quaternion endRotation;
 
     public void StartTransition()
     {
-        //if (this.isTransitioning)
-        //   return false;
-        if (this.isTransitioning)
+        if (this.isTransitioning || this.isReverselyTransitioning)
             return;
 
-        // Set up initial positions/rotations for the transition
-        startPosition = playerAtMainMenu.transform.position;
-        startRotation = playerAtMainMenu.transform.rotation;
-        endPosition = playerAtOptionMenu.transform.position;
-        endRotation = playerAtOptionMenu.transform.rotation;
-
         this.isTransitioning = true;
-        transitionProgress = 0f; // Reset transition progress
-        //return true;
+        this.transitionProgress = 0f;
+
+        // Set up transition start and end positions
+        this.startPosition = playerAtMainMenu.transform.position;
+        this.startRotation = playerAtMainMenu.transform.rotation;
+        this.endPosition = playerAtOptionMenu.transform.position;
+        this.endRotation = playerAtOptionMenu.transform.rotation;
+
+        // Disable the main menu and enable the option menu
+        mainMenuCanvas.SetActive(false);
+        optionMenuCanvas.SetActive(true);
+    }
+
+    public void StartReverseTransition()
+    {
+        if (this.isTransitioning || this.isReverselyTransitioning)
+            return;
+
+        this.isReverselyTransitioning = true;
+        this.transitionProgress = 0f;
+
+        // Set up reverse transition start and end positions
+        this.startPosition = playerAtOptionMenu.transform.position;
+        this.startRotation = playerAtOptionMenu.transform.rotation;
+        this.endPosition = playerAtMainMenu.transform.position;
+        this.endRotation = playerAtMainMenu.transform.rotation;
+
+        // Disable the option menu and enable the main menu
+        optionMenuCanvas.SetActive(false);
+        mainMenuCanvas.SetActive(true);
     }
 
     void Update()
     {
         if (this.isTransitioning)
         {
-            // Increment progress based on elapsed time
-            transitionProgress += Time.deltaTime / transitionDuration;
+            // Interpolate position and rotation based on time
+            this.transitionProgress += Time.deltaTime / ((float)numberOfMillisecondsForTransition / 1000f);
 
-            // Lerp position and rotation based on transitionProgress (0 to 1)
             playerAtMainMenu.transform.position = Vector3.Lerp(startPosition, endPosition, transitionProgress);
-            playerAtMainMenu.transform.rotation = Quaternion.Slerp(startRotation, endRotation, transitionProgress);
+            playerAtMainMenu.transform.rotation = Quaternion.Lerp(startRotation, endRotation, transitionProgress);
 
-            // Once the transition completes
+            // Stop transition when completed
             if (transitionProgress >= 1f)
             {
-                // Finalize the position and rotation
-                playerAtMainMenu.transform.position = endPosition;
-                playerAtMainMenu.transform.rotation = endRotation;
-
-                // Set the transition flag back to false
                 this.isTransitioning = false;
+            }
+        }
 
-                // Optionally, toggle menus visibility or handle other transition completion logic
-                mainMenuCanvas.SetActive(false);  // Disable main menu canvas
-                optionMenuCanvas.SetActive(true); // Enable option menu canvas
+        if (this.isReverselyTransitioning)
+        {
+            // Interpolate position and rotation based on time (reverse direction)
+            this.transitionProgress += Time.deltaTime / ((float)numberOfMillisecondsForTransition / 1000f);
+
+            playerAtOptionMenu.transform.position = Vector3.Lerp(startPosition, endPosition, transitionProgress);
+            playerAtOptionMenu.transform.rotation = Quaternion.Lerp(startRotation, endRotation, transitionProgress);
+
+            // Stop reverse transition when completed
+            if (transitionProgress >= 1f)
+            {
+                this.isReverselyTransitioning = false;
             }
         }
     }
