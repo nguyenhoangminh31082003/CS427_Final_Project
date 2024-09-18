@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 public class GameState : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject inGameMenuGameObject; 
     static GameState GameStateInstance;
     static public bool gameOver = false;
     private void Awake()
@@ -35,7 +36,16 @@ public class GameState : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            if (this.inGameMenuGameObject.activeInHierarchy)
+            {
+                this.inGameMenuGameObject.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                this.inGameMenuGameObject.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
     }
 }
