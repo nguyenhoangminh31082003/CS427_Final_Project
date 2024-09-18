@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackButton : MonoBehaviour
+public class BackButton : BaseButton
 {
-    // Start is called before the first frame update
+    public override void OnPointerClicking()
+    {
+        base.OnPointerClicking();
+        /*
+        
+            Let MenuStateScript.StartTransition handle the transition between the Main Menu and the Option Menu.
+        
+        */
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
     }
 }
