@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class BaseButton : MonoBehaviour
 {
-    // Start is called before the first frame update
+    protected void DisplayWhenPointerEnters()
+    {
+        this.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Bold | TMPro.FontStyles.Underline;
+        this.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+    }
+
+    protected void DisplayWhenPointerExits()
+    {
+        this.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Normal;
+        this.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+    }
+
+    protected virtual void OnPointerClicking()
+    {
+
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

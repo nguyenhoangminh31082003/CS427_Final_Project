@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResumeButton : MonoBehaviour
+public class ResumeButton : BaseButton
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject inGameMenuCanvas;
+    protected override void OnPointerClicking()
+    {
+        base.OnPointerClicking();
+        Time.timeScale = 1;
+        this.inGameMenuCanvas.SetActive(false);
+    }
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

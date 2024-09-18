@@ -1,16 +1,23 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class QuitButton : MonoBehaviour
+public class QuitButton : BaseButton
 {
-    // Start is called before the first frame update
+
+    protected override void OnPointerClicking()
+    {
+        base.OnPointerClicking();
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
