@@ -1,16 +1,21 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 public class VolumeSlider : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Slider slider;
+    [SerializeField] private TextMeshProUGUI sliderText;
     void Start()
     {
-        
+        slider.onValueChanged.AddListener((newVolume) => {
+            sliderText.text = newVolume + "%";
+        });
     }
 
-    // Update is called once per frame
     void Update()
     {
         
