@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MenuStateScript : MonoBehaviour
 {
-    [SerializeField] private GameObject playerAtMainMenu;   // Reference to Player's transform at the Main Menu
-    [SerializeField] private GameObject playerAtOptionMenu; // Reference to Player's transform at the Option Menu
-    [SerializeField] private GameObject mainMenuCanvas;     // Reference to the Main Menu Canvas
-    [SerializeField] private GameObject optionMenuCanvas;   // Reference to the Option Menu Canvas
-    [SerializeField] private double numberOfMillisecondsForTransition = 1000; // Time duration for the transition in milliseconds
+    [SerializeField] private GameObject playerAtMainMenu;   
+    [SerializeField] private GameObject playerAtOptionMenu; 
+    [SerializeField] private GameObject mainMenuCanvas;     
+    [SerializeField] private GameObject optionMenuCanvas;   
+    [SerializeField] private double numberOfMillisecondsForTransition = 2000; // Time duration for the transition in milliseconds
 
     private bool isTransitioning = false;
     private bool isReversed = false;
