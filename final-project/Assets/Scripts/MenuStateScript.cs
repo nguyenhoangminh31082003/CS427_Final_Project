@@ -12,13 +12,13 @@ public class MenuStateScript : MonoBehaviour
 
     private bool isTransitioning = false;
     private bool isReversed = false;
-    private float transitionProgress = 0f; // Tracks progress of the transition
+    private float transitionProgress = 0f; 
     private float transitionDuration;      // Duration in seconds (converted from milliseconds)
     
-    private Vector3 startPosition;         // Start position (Main Menu)
-    private Quaternion startRotation;      // Start rotation (Main Menu)
-    private Vector3 endPosition;           // End position (Option Menu)
-    private Quaternion endRotation;        // End rotation (Option Menu)
+    private Vector3 startPosition;         
+    private Quaternion startRotation;      
+    private Vector3 endPosition;           
+    private Quaternion endRotation;        
 
     void Start()
     {
