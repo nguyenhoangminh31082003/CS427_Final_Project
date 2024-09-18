@@ -31,14 +31,29 @@ public class SC_FPSController : MonoBehaviour
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        cameraPosition = playerCamera.transform.localPosition;
+        this.cameraPosition = playerCamera.transform.localPosition;
+    }
+
+    public void DisableMovement()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        this.canMove = false;
+    }
+
+    public void EnableMovement()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        this.canMove = true;
+        this.cameraPosition = playerCamera.transform.localPosition;
     }
 
     void Update()
     {
         if (GameState.gameOver == true)
         {
-            canMove = false;
+            this.canMove = false;
             return;
         }
         // We are grounded, so recalculate move direction based on axes
@@ -46,12 +61,12 @@ public class SC_FPSController : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right);
         // Press Left Shift to run
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = this.canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = this.canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (Input.GetButton("Jump") && this.canMove && characterController.isGrounded)
         {
             moveDirection.y = jumpSpeed;
         }
@@ -101,7 +116,7 @@ public class SC_FPSController : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
 
         // Player and Camera rotation
-        if (canMove)
+        if (this.canMove)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);

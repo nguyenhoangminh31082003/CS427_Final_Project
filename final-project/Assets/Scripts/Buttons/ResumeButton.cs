@@ -1,6 +1,6 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class ResumeButton : BaseButton
 {
@@ -11,6 +11,7 @@ public class ResumeButton : BaseButton
         Time.timeScale = 1;
         this.inGameMenuCanvas.SetActive(false);
     }
+
     void Start()
     {
         
@@ -18,6 +19,6 @@ public class ResumeButton : BaseButton
 
     void Update()
     {
-        
+        //Debug.Log("Resume button - Cursor: " + Cursor.visible); 
     }
 }

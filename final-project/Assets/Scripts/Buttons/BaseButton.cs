@@ -6,14 +6,16 @@ public class BaseButton : MonoBehaviour
 {
     public void DisplayWhenPointerEnters()
     {
-        this.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Bold | TMPro.FontStyles.Underline;
-        this.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+        TMPro.TextMeshProUGUI text = this.gameObject.transform.Find("Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
+        text.fontStyle = TMPro.FontStyles.Bold | TMPro.FontStyles.Underline;
+        text.color = new Color(1, 1, 1, 1);
     }
 
     public void DisplayWhenPointerExits()
     {
-        this.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Normal;
-        this.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
+        TMPro.TextMeshProUGUI text = this.gameObject.transform.Find("Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
+        text.fontStyle = TMPro.FontStyles.Normal;
+        text.color = new Color(1, 1, 1, 1);
     }
 
     public virtual void OnPointerClicking()

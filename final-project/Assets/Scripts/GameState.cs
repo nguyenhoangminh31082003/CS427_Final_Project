@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
-    [SerializeField] private GameObject inGameMenuGameObject; 
+    [SerializeField] private GameObject inGameMenuGameObject;
+    [SerializeField] private GameObject player;
     static GameState GameStateInstance;
     static public bool gameOver = false;
     private void Awake()
@@ -39,11 +40,13 @@ public class GameState : MonoBehaviour
             if (this.inGameMenuGameObject.activeInHierarchy)
             {
                 this.inGameMenuGameObject.SetActive(false);
+                player.GetComponent<SC_FPSController>().EnableMovement();
                 Time.timeScale = 1;
             }
             else
             {
                 this.inGameMenuGameObject.SetActive(true);
+                player.GetComponent<SC_FPSController>().DisableMovement();
                 Time.timeScale = 0;
             }
         }
