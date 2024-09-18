@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class BaseButton : MonoBehaviour
 {
-    protected void DisplayWhenPointerEnters()
+    public void DisplayWhenPointerEnters()
     {
         this.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Bold | TMPro.FontStyles.Underline;
         this.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
     }
 
-    protected void DisplayWhenPointerExits()
+    public void DisplayWhenPointerExits()
     {
         this.GetComponent<TMPro.TextMeshProUGUI>().fontStyle = TMPro.FontStyles.Normal;
         this.GetComponent<TMPro.TextMeshProUGUI>().color = new Color(1, 1, 1, 1);
     }
 
-    protected virtual void OnPointerClicking()
+    public virtual void OnPointerClicking()
     {
 
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResumeButton : BaseButton
 {
     [SerializeField] GameObject inGameMenuCanvas;
-    protected override void OnPointerClicking()
+    public override void OnPointerClicking()
     {
         base.OnPointerClicking();
         Time.timeScale = 1;

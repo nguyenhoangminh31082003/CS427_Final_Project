@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class QuitButton : BaseButton
 {
 
-    protected override void OnPointerClicking()
+    public override void OnPointerClicking()
     {
         base.OnPointerClicking();
         Time.timeScale = 1;
