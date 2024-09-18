@@ -4,12 +4,15 @@ using System.Collections.Generic;
 
 public class ResumeButton : BaseButton
 {
-    [SerializeField] GameObject inGameMenuCanvas;
+    [SerializeField] private GameObject inGameMenuCanvas;
+    [SerializeField] private GameObject player;
+
     public override void OnPointerClicking()
     {
         base.OnPointerClicking();
-        Time.timeScale = 1;
         this.inGameMenuCanvas.SetActive(false);
+        this.player.GetComponent<SC_FPSController>().EnableMovement();
+        Time.timeScale = 1;
     }
 
     void Start()
@@ -19,6 +22,5 @@ public class ResumeButton : BaseButton
 
     void Update()
     {
-        //Debug.Log("Resume button - Cursor: " + Cursor.visible); 
     }
 }

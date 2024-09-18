@@ -40,13 +40,13 @@ public class GameState : MonoBehaviour
             if (this.inGameMenuGameObject.activeInHierarchy)
             {
                 this.inGameMenuGameObject.SetActive(false);
-                player.GetComponent<SC_FPSController>().EnableMovement();
+                this.player.GetComponent<SC_FPSController>().EnableMovement();
                 Time.timeScale = 1;
             }
             else
             {
                 this.inGameMenuGameObject.SetActive(true);
-                player.GetComponent<SC_FPSController>().DisableMovement();
+                this.player.GetComponent<SC_FPSController>().DisableMovement();
                 Time.timeScale = 0;
             }
         }
