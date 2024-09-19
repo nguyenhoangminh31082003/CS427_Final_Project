@@ -6,8 +6,10 @@ public class MenuStateScript : MonoBehaviour
 {
     [SerializeField] private GameObject playerAtMainMenu;   
     [SerializeField] private GameObject playerAtOptionMenu; 
+    [SerializeField] private GameObject playerAtGuideMenu; 
     [SerializeField] private GameObject mainMenuCanvas;     
-    [SerializeField] private GameObject optionMenuCanvas;   
+    [SerializeField] private GameObject optionMenuCanvas;  
+    [SerializeField] private GameObject guideMenuCanvas;   
     [SerializeField] private double numberOfMillisecondsForTransition = 2000; // Time duration for the transition in milliseconds
 
     private bool isTransitioning = false;
