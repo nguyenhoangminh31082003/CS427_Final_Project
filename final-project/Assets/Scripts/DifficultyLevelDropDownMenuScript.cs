@@ -30,12 +30,21 @@ public class DifficultyLevelDropDownMenuScript : MonoBehaviour
         // Save the selected difficulty level to PlayerPrefs
         PlayerPrefs.SetInt("DifficultyLevel", difficultyLevel);
 
-        if (difficultyLevel == 0)
+        if (difficultyLevel == 0) 
+        {
             PlayerPrefs.SetInt("InitialMinutes", 60);
+            TimerScript.SetInitialGameDuration(60);
+        }
         else if (difficultyLevel == 1)
+        {
             PlayerPrefs.SetInt("InitialMinutes", 30);
+            TimerScript.SetInitialGameDuration(30);
+        }
         else if (difficultyLevel == 2)
+        {
             PlayerPrefs.SetInt("InitialMinutes", 15);
+            TimerScript.SetInitialGameDuration(15);
+        }
 
         PlayerPrefs.Save();
     }

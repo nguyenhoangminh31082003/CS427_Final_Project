@@ -1,19 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
+using System.Collections;
+using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class TimerScript : MonoBehaviour
 {
     static TimerScript TimerScriptInstance;
     [SerializeField] GameObject staticEffect;
     [SerializeField] GameObject gameOverText;
-    // Start is called before the first frame update
-    static float multi = 1.0f;
+
+    static float multi = 100.0f;
     static float targetTime = 60.0f;
+
     TextMeshProUGUI uGUI = null;
+
+    static public void SetInitialGameDuration(float minutes)
+    {
+        multi = minutes;
+    }
 
     private void Awake()
     {
@@ -40,15 +46,13 @@ public class TimerScript : MonoBehaviour
         staticEffect.SetActive(false);
     }
 
-    // Update is called once per frame
-
     private void FixedUpdate()
     {
         if (GameState.gameOver)
         {
             return;
         }
-        if (targetTime < (0.3f * multi * 60.0f))
+        if (targetTime < (0.1f * multi * 60.0f))
         {
             staticEffect.SetActive(true);
             //Debug.Log("Effect On");
