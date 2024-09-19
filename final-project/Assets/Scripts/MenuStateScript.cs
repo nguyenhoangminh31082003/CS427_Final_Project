@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MenuStateScript : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
     [SerializeField] private GameObject playerAtMainMenu;   
     [SerializeField] private GameObject playerAtOptionMenu; 
     [SerializeField] private GameObject playerAtGuideMenu; 
     [SerializeField] private GameObject mainMenuCanvas;     
     [SerializeField] private GameObject optionMenuCanvas;  
     [SerializeField] private GameObject guideMenuCanvas;   
-    [SerializeField] private double numberOfMillisecondsForTransition = 2000; // Time duration for the transition in milliseconds
+    [SerializeField] private double numberOfMillisecondsForTransition = 2000; 
 
-    private bool isTransitioning = false;
     private bool isReversed = false;
     private float transitionProgress = 0f; 
     private float transitionDuration;      // Duration in seconds (converted from milliseconds)
@@ -20,73 +20,87 @@ public class MenuStateScript : MonoBehaviour
     private Vector3 startPosition;         
     private Quaternion startRotation;      
     private Vector3 endPosition;           
-    private Quaternion endRotation;        
+    private Quaternion endRotation;      
+
+    private GameObject targetMenuCanvas = null;  
 
     void Start()
     {
-        transitionDuration = (float)numberOfMillisecondsForTransition / 1000f; // Convert milliseconds to seconds
+        this.transitionDuration = (float)numberOfMillisecondsForTransition / 1000f; // Convert milliseconds to seconds
     }
 
-    public void StartTransition()
+    private void TurnOffAllMenuCanvas() 
     {
-        if (this.isTransitioning)
-            return;
-
-        startPosition = playerAtMainMenu.transform.position;
-        startRotation = playerAtMainMenu.transform.rotation;
-        endPosition = playerAtOptionMenu.transform.position;
-        endRotation = playerAtOptionMenu.transform.rotation;
-
-        this.isTransitioning = true;
-        this.isReversed = false;
-        transitionProgress = 0f;
-
-        mainMenuCanvas.SetActive(false); 
-        optionMenuCanvas.SetActive(false);
+        this.mainMenuCanvas.SetActive(false); 
+        this.optionMenuCanvas.SetActive(false);
+        this.guideMenuCanvas.SetActive(false);
     }
 
-    public void StartReversedTransition()
+    public void StartTransitionToOptionMenu()
     {
-        if (this.isTransitioning)
+        if (this.targetMenuCanvas != null)
             return;
 
-        (startPosition, endPosition) = (endPosition, startPosition);
-        (startRotation, endRotation) = (endRotation, startRotation);
+        this.startPosition = this.player.transform.position;
+        this.startRotation = this.player.transform.rotation;
+        this.endPosition = this.playerAtOptionMenu.transform.position;
+        this.endRotation = this.playerAtOptionMenu.transform.rotation;
 
-        this.isTransitioning = true;
-        this.isReversed = true;
-        transitionProgress = 0f;
+        this.targetMenuCanvas = this.optionMenuCanvas;
+        this.transitionProgress = 0f;
 
-        mainMenuCanvas.SetActive(false); 
-        optionMenuCanvas.SetActive(false);
+        this.TurnOffAllMenuCanvas();
+    }
+
+    public void StartTransitionToMainMenu()
+    {
+        if (this.targetMenuCanvas != null)
+            return;
+
+        this.startPosition = this.player.transform.position;
+        this.startRotation = this.player.transform.rotation;
+        this.endPosition = this.playerAtMainMenu.transform.position;
+        this.endRotation = this.playerAtMainMenu.transform.rotation;
+
+        this.targetMenuCanvas = this.mainMenuCanvas;
+        this.transitionProgress = 0f;
+
+        this.TurnOffAllMenuCanvas();
+    }
+
+    public void StartTransitionToGuideMenu()
+    {
+        if (this.targetMenuCanvas != null)
+            return;
+
+        this.startPosition = this.player.transform.position;
+        this.startRotation = this.player.transform.rotation;
+        this.endPosition = this.playerAtGuideMenu.transform.position;
+        this.endRotation = this.playerAtGuideMenu.transform.rotation;
+
+        this.targetMenuCanvas = this.guideMenuCanvas;
+        this.transitionProgress = 0f;
+
+        this.TurnOffAllMenuCanvas();
     }
 
     void Update()
     {
-        if (this.isTransitioning)
+        if (this.targetMenuCanvas != null)
         {
-            //Debug.Log(startPosition + " " + endPosition + " " + startRotation + " " + endRotation + " " + transitionProgress + " " + playerAtMainMenu.transform.position + " " + playerAtMainMenu.transform.rotation); 
-            transitionProgress += Time.deltaTime / transitionDuration;
+            this.transitionProgress += Time.deltaTime / this.transitionDuration;
 
-            playerAtMainMenu.transform.position = Vector3.Lerp(startPosition, endPosition, transitionProgress);
-            playerAtMainMenu.transform.rotation = Quaternion.Slerp(startRotation, endRotation, transitionProgress);
+            this.player.transform.position = Vector3.Lerp(this.startPosition, this.endPosition, this.transitionProgress);
+            this.player.transform.rotation = Quaternion.Slerp(this.startRotation, this.endRotation, this.transitionProgress);
 
-            if (transitionProgress >= 1f)
+            if (this.transitionProgress >= 1f)
             {
-                playerAtMainMenu.transform.position = endPosition;
-                playerAtMainMenu.transform.rotation = endRotation;
+                this.player.transform.position = endPosition;
+                this.player.transform.rotation = endRotation;
 
-                this.isTransitioning = false;
+                this.targetMenuCanvas.SetActive(true);
 
-                if (this.isReversed)
-                {
-                    mainMenuCanvas.SetActive(true);  
-                    optionMenuCanvas.SetActive(false); 
-                } else {
-                    mainMenuCanvas.SetActive(false); 
-                   optionMenuCanvas.SetActive(true); 
-                }
-                
+                this.targetMenuCanvas = null;                
             }
         }
     }
