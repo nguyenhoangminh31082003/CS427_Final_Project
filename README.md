@@ -1,4 +1,4 @@
-# The Harkonnen and Eight Computers
+# Harkonnen and Eight Computers
 
 ## The Student Codes and Full Names
 
@@ -58,3 +58,33 @@ John wakes up and realises that he is in a completely dark forest. Behind the tr
 - "Forest" texture used in painting the terrain - [Poly Heaven - Forest Floor](https://polyhaven.com/a/forest_floor)
 
 - "Cracked Concrete" texture used in painting the terrain - [Poly Heaven - Cracked Concrete](https://polyhaven.com/a/cracked_concrete)
+
+- "Snow" texture used in painting the terrain - [Poly Heaven - Snow](https://polyhaven.com/a/snow_01)
+
+- "Stone Tile Wall" texture used in painting the terrain - [Poly Heaven - Stone Tile Wall](https://polyhaven.com/a/stone_tile_wall)
+
+- "Rock Boulder Dry" texture used in painting the terrain - [Poly Heaven - Rock Boulder Dry](https://polyhaven.com/a/rock_boulder_dry)
+
+- "Red Laterite Soil Stones" texture used in painting the terrain - [Poly Heaven - Red Laterite Soil Stones](https://polyhaven.com/a/red_laterite_soil_stones)
+
+- "Mossy Cobblestone" texture  used in painting the terrain - [Poly Heaven - Mossy Cobblestone](https://polyhaven.com/a/mossy_cobblestone)
+
+- "Large Pebbles" texture used in painting the terrain - [Poly Heaven - Large Pebbles](https://polyhaven.com/a/large_pebbles)
+
+- "Gravel Stones" texture used in painting the terrain - [Poly Heaven - Gravel Stones](http://gravel_stones/)
+
+- "Excavated Soil Wall" texture used in painting the terrain - [Poly Heaven - Excavated Soil Wall](https://polyhaven.com/a/excavated_soil_wall)
+
+- "Dry Riverbed Rock" texture used in painting the terrain - [Poly Heaven - Dry Riverbed Rock](https://polyhaven.com/a/dry_riverbed_rock)
+
+- "Dirt" texture used in painting the terrain - [Poly Heaven - Dirt](https://polyhaven.com/a/dirt)
+
+- "Cracked Red Ground" texture used in painting the terrain - [Poly Heaven - Cracked Red Ground](https://polyhaven.com/a/cracked_red_ground)
+
+- "Brown Mud Leaves" texture used in painting the terrain - [Poly Heaven - Brown Mud Leaves 01](https://polyhaven.com/a/brown_mud_leaves_01)
+
+- "Brown Mud" texture used in painting the terrain - [Poly Heaven - Brown Mud](https://polyhaven.com/a/brown_mud)
+
+- "Blue Painted Planks" texture used in painting the terrain (the texture is used to paint the floor of some houses in the game) - [Poly Heaven - Blue Painted Planks](https://polyhaven.com/a/blue_painted_planks)
+
+- "Aerial Rocks" texture used in painting the terrain - [Poly Heaven - Aerial Rocks 02](https://polyhaven.com/a/aerial_rocks_02)
